@@ -11,11 +11,24 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hc.RXjava.Object.User;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     CoordinatorLayout coordlayout = null;
+    private List<User> userList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +46,74 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        initData();
     }
+
+
+    /**
+     * @author statham 
+     * @date 2016/8/30 0030 16:11
+     * @Description: Rxjava 基础测试
+     * @param  
+     * @return      
+     */	 
+    private void TestRx(){
+
+
+        /*.flatMap(new Func1<User, Observable<User>>() {
+            @Override
+            public Observable<User> call(User user) {
+                return Observable.from();
+            }
+        })
+                .filter(new Func1<User, Boolean>() {
+                    @Override
+                    public Boolean call(User user) {
+                        return true;
+                    }
+                })*/
+        Observable.from(userList)
+
+                .map(new Func1<User, User>() {
+                    @Override
+                    public User call(User user) {
+                        return user;
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+
+                    }
+                });
+    }
+
+
+    private void initData(){
+        userList = new ArrayList<User>();
+
+        User user = null;
+        String name = null;
+        String sex = "0";
+        int age = 18;
+
+        for(int i=0;i<20;i++){
+            name = "TUN"+i;
+            if (i%2==0){
+                sex = "0";
+                age = age + i ;
+            } else {
+                sex = "1";
+                age = age + i *2 ;
+            }
+            user = new User(name,sex,age);
+            userList.add(user);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
