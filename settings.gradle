@@ -1,1 +1,3 @@
 include ':app'
+include ':httpandasny'
+project (':httpandasny').projectDir = new File('../CommonLibrary/httpandasny/')
