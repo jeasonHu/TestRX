@@ -59,7 +59,7 @@ public class RetrofitActivity extends AppCompatActivity {
      * @return
      */
     private void TestRetrofit2(){
-        Call<BaseRespEntity> call = RetrofitClient.getRetrofit(ServerConfig.getRequestURL())
+        Call<BaseRespEntity> call = RetrofitClient.getInstance().getRetrofit(ServerConfig.getRequestURL())
                 .create(ApiStores.class).getCityList("31","31","4.9");
         call.enqueue(new Callback<BaseRespEntity>() {
             @Override
@@ -97,7 +97,7 @@ public class RetrofitActivity extends AppCompatActivity {
      * @return
      */
     private void TestRetrofit2ListObject(){
-        Call<ResponEntityList<FilmInfo>> call = RetrofitClient.getRetrofit(ServerConfig.getRequestURL())
+        Call<ResponEntityList<FilmInfo>> call = RetrofitClient.getInstance().getRetrofit(ServerConfig.getRequestURL())
                 .create(ApiStores.class).getFilmSimpleByIds("10","3392","31","31","4.9");
         call.enqueue(new Callback<ResponEntityList<FilmInfo>>() {
             @Override
@@ -134,8 +134,15 @@ public class RetrofitActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * @author statham
+     * @date 2016/10/25 22:13
+     * @Description:请求Object类型数据  返回
+     * @param
+     * @return
+     */
     private void TestRetrofit2Object(){
-        Call<ResponEntityOb<ResultAd>> call = RetrofitClient.getRetrofit(ServerConfig.getRequestURL())
+        Call<ResponEntityOb<ResultAd>> call = RetrofitClient.getInstance().getRetrofit(ServerConfig.getRequestURL())
                 .create(ApiStores.class).getAdInfo("10","0-maizuo","31","31","4.9");
         call.enqueue(new Callback<ResponEntityOb<ResultAd>>() {
             @Override
