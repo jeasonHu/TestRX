@@ -1,5 +1,6 @@
 package com.hc.RXjava;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "===================action_rx_flatmap===================" + Thread.currentThread().getName());
                 TestRX_flatMap();
                 break;
+            case R.id.action_retrofit2:
+                Intent intent = new Intent(this,RetrofitActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -123,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     private void initData() {
         userList = new ArrayList<User>();

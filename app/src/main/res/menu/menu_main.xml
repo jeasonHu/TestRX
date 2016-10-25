@@ -13,4 +13,10 @@
         android:orderInCategory="100"
         android:title="RxJava_flatMap"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_retrofit2"
+        android:orderInCategory="100"
+        android:title="Retrofit2.0"
+        app:showAsAction="never" />
 </menu>
