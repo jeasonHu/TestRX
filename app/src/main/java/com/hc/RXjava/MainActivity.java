@@ -15,7 +15,6 @@ import com.hc.RXjava.Object.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
      * @date 2016/8/30 0030 16:11
      * @Description: Rxjava 基础测试
      * @param  
-     * @return      
+     * @return
      */	 
     private void TestRx(){
 
