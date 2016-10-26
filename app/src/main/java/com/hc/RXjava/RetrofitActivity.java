@@ -69,22 +69,18 @@ public class RetrofitActivity extends AppCompatActivity {
                 }
                 try {
                     if (RespStatusType.STATUS_OK != response.body().getStatus()) {
-                        Snackbar.make(ll_coordinatorLayout, "返回状态失败：" + response.body().getMsg(), Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
+                        showSnackbar("返回状态失败：" + response.body().getMsg());
                     } else {
-                        Snackbar.make(ll_coordinatorLayout, "返回状态失败", Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
+                        showSnackbar("返回状态失败");
                     }
                 } catch (Exception e) {
-                    Snackbar.make(ll_coordinatorLayout, "数据处理异常", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                    showSnackbar("数据处理异常");
                 }
             }
 
             @Override
             public void onFailure(Call<BaseRespEntity> call, Throwable t) {
-                Snackbar.make(ll_coordinatorLayout, "onFailure ：" + t.getMessage(), Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                showSnackbar("onFailure ：" + t.getMessage());
             }
         });
     }
@@ -107,29 +103,25 @@ public class RetrofitActivity extends AppCompatActivity {
                 }
                 try{
                     if(RespStatusType.STATUS_OK != response.body().getStatus()){
-                        Snackbar.make(ll_coordinatorLayout, "数据异常或数据为空 ：" + response.body().getStatus()
-                                 + " : " + response.body().getMsg() , Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
+                        showSnackbar("数据异常或数据为空 ：" + response.body().getStatus()
+                                 + " : " + response.body().getMsg());
                         return;
                     }
                     FilmInfo film = response.body().getData().get(0);
                     if (film == null){
-                        Snackbar.make(ll_coordinatorLayout, "返回实体数据为空 Null", Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
+                        showSnackbar("返回实体数据为空 Null");
                         return;
                     }
                     Logger.i(TAG,film.toString());
                 }catch (Exception e){
-                    Snackbar.make(ll_coordinatorLayout, "数据处理异常", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                    showSnackbar("数据处理异常");
                     return;
                 }
             }
 
             @Override
             public void onFailure(Call<ResponEntityList<FilmInfo>> call, Throwable t) {
-                Snackbar.make(ll_coordinatorLayout, "请求异常：" + t.getMessage(), Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                showSnackbar("请求异常：" + t.getMessage());
             }
         });
     }
@@ -152,30 +144,31 @@ public class RetrofitActivity extends AppCompatActivity {
                 }
                 try{
                     if(RespStatusType.STATUS_OK != response.body().getStatus()){
-                        Snackbar.make(ll_coordinatorLayout, "数据异常或数据为空 ：" + response.body().getStatus(), Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
+                        showSnackbar("数据异常或数据为空 ：" + response.body().getStatus());
                         return;
                     }
                     ResultAd data = response.body().getData();
                     if (data == null){
-                        Snackbar.make(ll_coordinatorLayout, "返回实体数据为空 Null", Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
+                        showSnackbar("返回实体数据为空 Null");
                         return;
                     }
                     Logger.i(TAG,data.toString());
                 }catch (Exception e){
-                    Snackbar.make(ll_coordinatorLayout, "数据处理异常", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                    showSnackbar("数据处理异常");
                     return;
                 }
             }
 
             @Override
             public void onFailure(Call<ResponEntityOb<ResultAd>> call, Throwable t) {
-                Snackbar.make(ll_coordinatorLayout, "请求异常：" + t.getMessage(), Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                showSnackbar("请求异常：" + t.getMessage());
             }
         });
     }
 
+
+    private void showSnackbar(String msg){
+        Snackbar.make(ll_coordinatorLayout, msg, Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
+    }
 }
