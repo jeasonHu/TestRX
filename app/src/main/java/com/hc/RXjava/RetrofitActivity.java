@@ -15,9 +15,9 @@ import com.hc.RXjava.Retrofit2.ApiStores;
 import com.hc.RXjava.ServerUtils.ServerConfig;
 
 import commonlibrary.hyx.com.baselibrary.Logger;
-import commonlibrary.hyx.com.baselibrary.Response.BaseRespEntity;
-import commonlibrary.hyx.com.baselibrary.Response.ResponEntityList;
-import commonlibrary.hyx.com.baselibrary.Response.ResponEntityOb;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.BaseRespEntity;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.ResponEntityList;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.ResponEntityOb;
 import commonlibrary.hyx.com.baselibrary.Retrofit.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;

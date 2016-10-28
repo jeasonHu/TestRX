@@ -1,6 +1,6 @@
 package com.hc.RXjava.Commons;
 
-import commonlibrary.hyx.com.baselibrary.Response.BaseRespStatusType;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.BaseRespStatusType;
 
 /**
  * @author statham

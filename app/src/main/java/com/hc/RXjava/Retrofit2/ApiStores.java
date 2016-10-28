@@ -3,9 +3,9 @@ package com.hc.RXjava.Retrofit2;
 import com.hc.RXjava.Object.FilmInfo;
 import com.hc.RXjava.Object.ResultAd;
 
-import commonlibrary.hyx.com.baselibrary.Response.BaseRespEntity;
-import commonlibrary.hyx.com.baselibrary.Response.ResponEntityList;
-import commonlibrary.hyx.com.baselibrary.Response.ResponEntityOb;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.BaseRespEntity;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.ResponEntityList;
+import commonlibrary.hyx.com.baselibrary.BaseResponse.ResponEntityOb;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
