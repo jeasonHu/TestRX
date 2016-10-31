@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class RetrofitActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "RetrofitActivity";
     private CoordinatorLayout ll_coordinatorLayout;
 
 
@@ -44,8 +44,27 @@ public class RetrofitActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TestRetrofit2ListObject();
+                showSnackbar(".........");
 
+            }
+        });
+
+        findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestRetrofit2();
+            }
+        });
+        findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestRetrofit2ListObject();
+            }
+        });
+        findViewById(R.id.btn3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestRetrofit2Object();
             }
         });
 
@@ -59,8 +78,8 @@ public class RetrofitActivity extends AppCompatActivity {
      * @return
      */
     private void TestRetrofit2(){
-        Call<BaseRespEntity> call = RetrofitClient.getInstance().getRetrofit(ServerConfig.getRequestURL())
-                .create(ApiStores.class).getCityList("31","31","4.9");
+        Call<BaseRespEntity> call = RetrofitClient.getInstance().getRetrofit()
+                .create(ApiStores.class).getCityList();
         call.enqueue(new Callback<BaseRespEntity>() {
             @Override
             public void onResponse(Call<BaseRespEntity> call, Response<BaseRespEntity> response) {
@@ -68,10 +87,10 @@ public class RetrofitActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    if (RespStatusType.STATUS_OK != response.body().getStatus()) {
+                    if (!RespStatusType.STATUS_OK.equals(response.body().getStatus())) {
                         showSnackbar("返回状态失败：" + response.body().getMsg());
                     } else {
-                        showSnackbar("返回状态失败");
+                        showSnackbar("返回状态成功：" + response.body().getMsg());
                     }
                 } catch (Exception e) {
                     showSnackbar("数据处理异常");
@@ -93,8 +112,8 @@ public class RetrofitActivity extends AppCompatActivity {
      * @return
      */
     private void TestRetrofit2ListObject(){
-        Call<ResponEntityList<FilmInfo>> call = RetrofitClient.getInstance().getRetrofit(ServerConfig.getRequestURL())
-                .create(ApiStores.class).getFilmSimpleByIds("10","3392","31","31","4.9");
+        Call<ResponEntityList<FilmInfo>> call = RetrofitClient.getInstance().getRetrofit()
+                .create(ApiStores.class).getFilmSimpleByIds("10","3392");
         call.enqueue(new Callback<ResponEntityList<FilmInfo>>() {
             @Override
             public void onResponse(Call<ResponEntityList<FilmInfo>> call, Response<ResponEntityList<FilmInfo>> response) {
@@ -102,7 +121,7 @@ public class RetrofitActivity extends AppCompatActivity {
                     return;
                 }
                 try{
-                    if(RespStatusType.STATUS_OK != response.body().getStatus()){
+                    if(!RespStatusType.STATUS_OK.equals(response.body().getStatus())){
                         showSnackbar("数据异常或数据为空 ：" + response.body().getStatus()
                                  + " : " + response.body().getMsg());
                         return;
@@ -134,8 +153,8 @@ public class RetrofitActivity extends AppCompatActivity {
      * @return
      */
     private void TestRetrofit2Object(){
-        Call<ResponEntityOb<ResultAd>> call = RetrofitClient.getInstance().getRetrofit(ServerConfig.getRequestURL())
-                .create(ApiStores.class).getAdInfo("10","0-maizuo","31","31","4.9");
+        Call<ResponEntityOb<ResultAd>> call = RetrofitClient.getInstance().getRetrofit()
+                .create(ApiStores.class).getAdInfo("10");
         call.enqueue(new Callback<ResponEntityOb<ResultAd>>() {
             @Override
             public void onResponse(Call<ResponEntityOb<ResultAd>> call, Response<ResponEntityOb<ResultAd>> response) {
@@ -143,8 +162,9 @@ public class RetrofitActivity extends AppCompatActivity {
                     return;
                 }
                 try{
-                    if(RespStatusType.STATUS_OK != response.body().getStatus()){
-                        showSnackbar("数据异常或数据为空 ：" + response.body().getStatus());
+                    if(!RespStatusType.STATUS_OK.equals(response.body().getStatus())){
+                        showSnackbar("数据异常或数据为空 ："  + response.body().getStatus()
+                                + " : " + response.body().getMsg());
                         return;
                     }
                     ResultAd data = response.body().getData();

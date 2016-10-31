@@ -37,19 +37,13 @@ public interface ApiStores {
 
 
     @GET("/ver4/city/list")
-    Call<BaseRespEntity> getCityList(@Query("channelID") String channelID,
-                                     @Query("clientID") String clientID,
-                                     @Query("revision") String revision);
+    Call<BaseRespEntity> getCityList();
 
     @GET(VER4 + "/city/{cityId}/otherFilm")
-    Call<ResponEntityList<FilmInfo>> getFilmSimpleByIds(@Path("cityId") String cityId, @Query("filmIds") String filmIds, @Query("channelID") String channelID,
-                                                        @Query("clientID") String clientID,
-                                                        @Query("revision") String revision);
+    Call<ResponEntityList<FilmInfo>> getFilmSimpleByIds(@Path("cityId") String cityId, @Query("filmIds") String filmIds);
 
     @GET(VER4 + "/city/{cityId}/ADInfo")
-    Call<ResponEntityOb<ResultAd>> getAdInfo(@Path("cityId") String cityId, @Query("agentID") String agentID, @Query("channelID") String channelID,
-                                             @Query("clientID") String clientID,
-                                             @Query("revision") String revision);
+    Call<ResponEntityOb<ResultAd>> getAdInfo(@Path("cityId") String cityId);
 
     @GET("adat/sk/{cityId}.html")
     Call<ResponseBody> getWeatherRxjava(@Path("cityId") String cityId);

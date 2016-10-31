@@ -10,8 +10,4 @@ public class ServerConfig {
     public static final String PHONEURI = "http://mobileif.maizuo.com";
 
 
-    public static String getRequestURL(){
-        return PHONEURI;
-    }
-
 }
