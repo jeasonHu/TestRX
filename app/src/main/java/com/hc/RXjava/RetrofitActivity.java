@@ -131,6 +131,7 @@ public class RetrofitActivity extends AppCompatActivity {
                         showSnackbar("返回实体数据为空 Null");
                         return;
                     }
+                    showSnackbar("成功 ：" + film.getFilmName());
                     Logger.i(TAG,film.toString());
                 }catch (Exception e){
                     showSnackbar("数据处理异常");
